@@ -4,499 +4,554 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clínica Dental Solé · Barcelona</title>
-    <meta name="description" content="Clínica Dental Solé en Barcelona, Sants-Montjuïc. Tratamientos dentales con tecnología avanzada. 4,9 ⭐ de valoración. Llámanos: 934 31 37 71.">
+    <meta name="description" content="Clínica Dental Solé en Sants, Barcelona. Cuidado dental profesional con tecnología avanzada. 4,9 ⭐ de valoración media. Tel: 934 31 37 71.">
     <meta property="og:title" content="Clínica Dental Solé · Barcelona">
-    <meta property="og:description" content="Tu dentista de confianza en el barrio de Sants. Más de 4,9 estrellas de valoración media.">
+    <meta property="og:description" content="Tu dentista de confianza en el corazón de Sants. Más de 4,9 estrellas en Google.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brand:       #0076C8;
-            --brand-dark:  #005A9E;
-            --brand-light: #E6F4FF;
-            --accent:      #00A0DC;
-            --bg:          #FFFFFF;
-            --surface:     #F5F9FD;
-            --surface-2:   #EAF3FB;
-            --ink:         #0D1D2E;
-            --muted:       #5A7389;
-            --line:        #D3E5F2;
-            --font-head:   'Plus Jakarta Sans', sans-serif;
-            --font-body:   'Inter', sans-serif;
+            --brand:      #0077CC;
+            --brand-dark: #005CA3;
+            --brand-light:#E8F4FF;
+            --ink:        #0B1E30;
+            --bg:         #FFFFFF;
+            --surface:    #F6FAFF;
+            --muted:      #607A8E;
+            --line:       #D9E8F4;
+            --font-head:  'Cormorant Garamond', serif;
+            --font-body:  'DM Sans', sans-serif;
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--font-body);
-            background: var(--bg);
-            color: var(--ink);
-            -webkit-font-smoothing: antialiased;
-        }
-        h1,h2,h3,h4,h5 { font-family: var(--font-head); }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+        h1,h2,h3,h4 { font-family: var(--font-head); }
+
         .kicker {
-            font-family: var(--font-head);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
+            font-family: var(--font-body);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
         }
 
         /* NAV */
-        #nav { background: var(--bg); border-bottom: 1px solid var(--line); }
-        #nav a { font-family: var(--font-head); font-size: 0.82rem; font-weight: 600; color: var(--ink); text-decoration: none; transition: color .2s; }
-        #nav a:hover { color: var(--brand); }
+        #nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+            transition: background .4s, border-color .4s, box-shadow .4s;
+            background: transparent;
+            border-bottom: 1px solid transparent;
+        }
+        #nav.scrolled {
+            background: rgba(255,255,255,.96);
+            backdrop-filter: blur(12px);
+            border-bottom-color: var(--line);
+            box-shadow: 0 2px 20px rgba(0,0,0,.06);
+        }
+        #nav a { font-family: var(--font-body); font-size: .82rem; font-weight: 500; text-decoration: none; transition: color .2s; }
+        #nav.scrolled a { color: var(--ink); }
+        #nav:not(.scrolled) a { color: rgba(255,255,255,.85); }
+        #nav:not(.scrolled) a:hover { color: #fff; }
+        #nav.scrolled a:hover { color: var(--brand); }
 
         /* HERO */
-        .hero-img {
-            background-image: url('fachada.png');
+        .hero-bg {
+            background-image: url('inside.png');
             background-size: cover;
-            background-position: center top;
+            background-position: center;
+        }
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(11,30,48,.82) 0%, rgba(0,119,204,.35) 100%);
         }
 
-        /* STARS */
-        .stars { color: #F59E0B; letter-spacing: 2px; }
+        /* DIVIDER */
+        .hairline { width: 48px; height: 1.5px; background: var(--brand); display: block; }
 
-        /* SERVICE CARDS */
-        .serv-card {
-            background: var(--bg);
-            border: 1px solid var(--line);
-            border-radius: 1.25rem;
-            padding: 1.75rem;
-            transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        /* SERVICE ITEMS */
+        .serv-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: 2.5rem 1fr;
+            gap: 1rem;
+            align-items: start;
+            transition: background .2s;
         }
-        .serv-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -10px rgba(0,118,200,.15);
-            border-color: var(--brand);
-        }
-        .serv-icon {
-            width: 48px; height: 48px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            background: var(--brand-light);
-            margin-bottom: 1rem;
+        .serv-item:first-child { border-top: 1px solid var(--line); }
+        .serv-num {
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+            color: var(--brand);
+            padding-top: .15rem;
+            font-weight: 400;
         }
 
-        /* GALLERY */
-        .gallery-img {
-            width: 100%; aspect-ratio: 4/3;
+        /* PHOTO */
+        .photo-cover {
+            width: 100%; height: 100%;
             object-fit: cover;
-            border-radius: 1rem;
             display: block;
-            transition: transform .4s ease;
         }
-        .gallery-img:hover { transform: scale(1.02); }
 
-        /* SCHEDULE TABLE */
-        .sched-row { display: flex; justify-content: space-between; align-items: center; padding: .75rem 0; border-bottom: 1px solid var(--line); }
+        /* HOVER LIFT */
+        .lift { transition: transform .4s ease; }
+        .lift:hover { transform: translateY(-4px); }
+
+        /* SCHEDULE */
+        .sched-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--line);
+        }
         .sched-row:last-child { border-bottom: none; }
-        .sched-day { font-family: var(--font-head); font-weight: 600; font-size: .9rem; }
-        .sched-hrs { font-size: .85rem; color: var(--muted); text-align: right; }
-        .badge-closed { background: #F3F4F6; color: #9CA3AF; padding: .2rem .7rem; border-radius: 999px; font-size: .75rem; font-weight: 600; }
 
         /* MOBILE MENU */
-        #mobile-menu a { display: block; padding: .6rem 0; font-family: var(--font-head); font-size: .95rem; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
-        #mobile-menu a:last-child { border-bottom: none; }
+        #mobile-menu {
+            position: fixed; inset: 0; z-index: 40;
+            background: var(--ink);
+            display: flex; flex-direction: column;
+            padding: 5rem 2.5rem 2.5rem;
+            transform: translateX(100%);
+            transition: transform .35s cubic-bezier(.77,0,.175,1);
+        }
+        #mobile-menu.open { transform: translateX(0); }
+        #mobile-menu a { display: block; font-family: var(--font-head); font-size: 2.5rem; font-weight: 400; color: #fff; text-decoration: none; padding: .6rem 0; border-bottom: 1px solid rgba(255,255,255,.1); transition: color .2s; }
+        #mobile-menu a:hover { color: #60B8EE; }
+        #close-menu { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; cursor: pointer; color: white; }
+
+        /* CTA BUTTON */
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: .6rem;
+            padding: .9rem 2rem;
+            background: var(--brand);
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none; cursor: pointer;
+            transition: background .25s, transform .25s;
+        }
+        .btn-primary:hover { background: var(--brand-dark); transform: translateY(-1px); }
+        .btn-outline {
+            display: inline-flex; align-items: center; gap: .6rem;
+            padding: .9rem 2rem;
+            border: 1.5px solid #fff;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background .25s, color .25s;
+        }
+        .btn-outline:hover { background: #fff; color: var(--ink); }
+
+        @media (max-width: 767px) {
+            .hero-text h1 { font-size: 3.5rem; }
+        }
     </style>
 </head>
 <body>
 
-<!-- ───── NAV ───── -->
-<header id="nav" class="fixed top-0 inset-x-0 z-50">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-8">
-        <a href="#" class="flex items-center gap-2">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#E6F4FF"/><path d="M9 10c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.5-.67 2.83-1.71 3.76L19 23h-2l-1.5-5h-3L11 23H9l1.71-9.24A4.99 4.99 0 0 1 9 10z" fill="#0076C8"/></svg>
-            <span style="font-family:var(--font-head); font-weight:800; font-size:1.05rem; color:var(--ink);">Dental <span style="color:var(--brand);">Solé</span></span>
+<!-- ── NAV ── -->
+<header id="nav">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
+        <a href="#" style="font-family:var(--font-head); font-size:1.35rem; font-weight:500; letter-spacing:.04em; color:#fff; text-decoration:none;" id="nav-logo">
+            Dental <em>Solé</em>
         </a>
-        <nav class="hidden md:flex items-center gap-7">
+        <nav class="hidden md:flex items-center gap-9">
             <a href="#tratamientos">Tratamientos</a>
             <a href="#clinica">La Clínica</a>
             <a href="#horarios">Horarios</a>
             <a href="#contacto">Contacto</a>
         </nav>
-        <a href="tel:+34934313771"
-           class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-sm font-semibold transition-opacity hover:opacity-90"
-           style="background:var(--brand); font-family:var(--font-head);">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.18-1.18a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92v2z"/></svg>
+        <a href="tel:+34934313771" id="nav-cta"
+           class="hidden md:inline-block px-6 py-2.5 text-xs kicker transition-all"
+           style="border:1.5px solid rgba(255,255,255,.5); color:#fff;">
             934 31 37 71
         </a>
-        <button id="menu-btn" class="md:hidden p-2 rounded-lg" style="color:var(--ink);" aria-label="Menú">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <button id="menu-btn" class="md:hidden" style="background:none;border:none;cursor:pointer;color:#fff;" aria-label="Menú">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
-    </div>
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden px-5 pb-5 pt-2" style="background:var(--bg); border-top:1px solid var(--line);">
-        <a href="#tratamientos">Tratamientos</a>
-        <a href="#clinica">La Clínica</a>
-        <a href="#horarios">Horarios</a>
-        <a href="#contacto">Contacto</a>
-        <a href="tel:+34934313771" class="mt-3 inline-block px-5 py-2.5 rounded-full text-white text-sm font-semibold" style="background:var(--brand);">934 31 37 71</a>
     </div>
 </header>
 
-<!-- ───── HERO ───── -->
-<section class="pt-16">
-    <div class="grid lg:grid-cols-2 min-h-screen lg:min-h-0 lg:h-[92vh]">
-        <!-- Texto -->
-        <div class="flex flex-col justify-center px-8 sm:px-14 lg:px-16 py-20 lg:py-0" style="background:var(--surface);">
-            <!-- Valoración -->
-            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-8 w-fit"
-                 style="background:var(--brand-light); border:1px solid #B3D9F5;">
-                <span class="stars text-base">★★★★★</span>
-                <span style="font-family:var(--font-head); font-weight:700; font-size:.85rem; color:var(--brand-dark);">4,9 · Valoración en Google</span>
-            </div>
+<!-- Mobile menu -->
+<div id="mobile-menu">
+    <button id="close-menu" aria-label="Cerrar menú">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <a href="#tratamientos">Tratamientos</a>
+    <a href="#clinica">La Clínica</a>
+    <a href="#horarios">Horarios</a>
+    <a href="#contacto">Contacto</a>
+    <a href="tel:+34934313771" class="mt-6 text-base" style="font-family:var(--font-body); font-size:1.1rem; border-color:rgba(255,255,255,.2); color: #60B8EE;">
+        ☎ 934 31 37 71
+    </a>
+</div>
 
-            <p class="kicker" style="color:var(--brand);">Clínica Dental · Barcelona</p>
-            <h1 class="mt-4 font-extrabold leading-[1.05] tracking-tight text-5xl sm:text-6xl"
-                style="font-family:var(--font-head);">
-                Tu sonrisa,<br>
-                <span style="color:var(--brand);">en las mejores<br>manos.</span>
-            </h1>
-            <p class="mt-6 text-lg leading-relaxed max-w-md" style="color:var(--muted);">
-                En el corazón de Sants, cuidamos tu salud dental con tecnología avanzada y un trato cercano y profesional.
-            </p>
-
-            <div class="mt-10 flex flex-wrap gap-4">
-                <a href="tel:+34934313771"
-                   class="px-8 py-4 rounded-full text-white font-semibold text-sm transition-opacity hover:opacity-90 inline-flex items-center gap-2"
-                   style="background:var(--brand); font-family:var(--font-head);">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.18-1.18a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92v2z"/></svg>
-                    Pedir cita
-                </a>
-                <a href="#tratamientos"
-                   class="px-8 py-4 rounded-full font-semibold text-sm transition-all hover:bg-[var(--brand-light)] inline-flex items-center gap-2"
-                   style="border:1.5px solid var(--brand); color:var(--brand); font-family:var(--font-head);">
-                    Ver tratamientos
-                </a>
-            </div>
-
-            <!-- Mini stats -->
-            <div class="mt-12 flex gap-8 pt-8" style="border-top:1px solid var(--line);">
-                <div>
-                    <p class="font-extrabold text-2xl" style="font-family:var(--font-head); color:var(--brand);">+15 años</p>
-                    <p class="text-xs mt-1" style="color:var(--muted);">de experiencia</p>
-                </div>
-                <div>
-                    <p class="font-extrabold text-2xl" style="font-family:var(--font-head); color:var(--brand);">4,9 ★</p>
-                    <p class="text-xs mt-1" style="color:var(--muted);">valoración media</p>
-                </div>
-                <div>
-                    <p class="font-extrabold text-2xl" style="font-family:var(--font-head); color:var(--brand);">Sants</p>
-                    <p class="text-xs mt-1" style="color:var(--muted);">Barcelona</p>
-                </div>
-            </div>
+<!-- ── HERO ── -->
+<section class="hero-bg relative" style="height:100svh; min-height:600px;">
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 h-full flex flex-col justify-end pb-16 sm:pb-24 hero-text">
+        <!-- Valoración -->
+        <div class="flex items-center gap-3 mb-7">
+            <span style="color:#F9C84A; font-size:1rem; letter-spacing:3px;">★★★★★</span>
+            <span class="kicker" style="color:rgba(255,255,255,.75);">4,9 · Valoración en Google</span>
         </div>
-
-        <!-- Foto fachada -->
-        <div class="hero-img min-h-72 lg:min-h-0"></div>
-    </div>
-</section>
-
-<!-- ───── TRATAMIENTOS ───── -->
-<section id="tratamientos" class="py-20 sm:py-28" style="background:var(--bg);">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8">
-        <div class="max-w-2xl mb-14">
-            <p class="kicker" style="color:var(--brand);">Nuestros servicios</p>
-            <h2 class="mt-4 font-extrabold text-3xl sm:text-4xl tracking-tight" style="font-family:var(--font-head);">
-                Tratamientos para toda la familia
-            </h2>
-            <p class="mt-4 text-base leading-relaxed" style="color:var(--muted);">
-                Ofrecemos una atención dental integral con los equipos más modernos para que cada visita sea cómoda y efectiva.
-            </p>
+        <h1 class="text-white font-normal leading-[1.0] tracking-tight"
+            style="font-size:clamp(3.2rem,8vw,6.5rem); font-family:var(--font-head);">
+            Tu sonrisa<br>en las mejores<br><em>manos.</em>
+        </h1>
+        <p class="mt-7 text-base sm:text-lg leading-relaxed max-w-lg" style="color:rgba(255,255,255,.72); font-weight:300;">
+            Clínica dental en el corazón de Sants. Tecnología avanzada y un equipo que cuida cada detalle.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+            <a href="tel:+34934313771" class="btn-primary">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.18-1.18a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92v2z"/></svg>
+                Pedir cita
+            </a>
+            <a href="#tratamientos" class="btn-outline">Ver tratamientos</a>
         </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- 1 -->
-            <div class="serv-card">
-                <div class="serv-icon">
-                    <svg width="24" height="24" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 017 7c0 3-2 5.5-4 7l-3 6-3-6c-2-1.5-4-4-4-7a7 7 0 017-7z"/><circle cx="12" cy="9" r="2"/></svg>
-                </div>
-                <h3 style="font-family:var(--font-head); font-weight:700; font-size:1rem;">Revisión y diagnóstico</h3>
-                <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted);">Exploración completa con radiografías digitales y escáner panorámico para un diagnóstico preciso.</p>
-            </div>
-            <!-- 2 -->
-            <div class="serv-card">
-                <div class="serv-icon">
-                    <svg width="24" height="24" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <h3 style="font-family:var(--font-head); font-weight:700; font-size:1rem;">Limpieza dental</h3>
-                <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted);">Eliminación de sarro y manchas con ultrasonidos. Profilaxis profesional para mantener unas encías sanas.</p>
-            </div>
-            <!-- 3 -->
-            <div class="serv-card">
-                <div class="serv-icon">
-                    <svg width="24" height="24" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-                </div>
-                <h3 style="font-family:var(--font-head); font-weight:700; font-size:1rem;">Ortodoncia</h3>
-                <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted);">Brackets metálicos, estéticos y alineadores invisibles para niños, jóvenes y adultos.</p>
-            </div>
-            <!-- 4 -->
-            <div class="serv-card">
-                <div class="serv-icon">
-                    <svg width="24" height="24" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 12h6M12 9v6"/></svg>
-                </div>
-                <h3 style="font-family:var(--font-head); font-weight:700; font-size:1rem;">Implantes dentales</h3>
-                <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted);">Reemplazamos dientes perdidos con implantes de titanio de alta calidad. Solución permanente y natural.</p>
-            </div>
-            <!-- 5 -->
-            <div class="serv-card">
-                <div class="serv-icon">
-                    <svg width="24" height="24" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </div>
-                <h3 style="font-family:var(--font-head); font-weight:700; font-size:1rem;">Blanqueamiento dental</h3>
-                <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted);">Tratamiento profesional en clínica o con férulas a domicilio para una sonrisa más blanca y luminosa.</p>
-            </div>
-            <!-- 6 -->
-            <div class="serv-card">
-                <div class="serv-icon">
-                    <svg width="24" height="24" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-                </div>
-                <h3 style="font-family:var(--font-head); font-weight:700; font-size:1rem;">Odontopediatría</h3>
-                <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted);">Cuidado dental especializado para los más pequeños en un entorno amigable y sin miedos.</p>
-            </div>
-            <!-- 7 -->
-            <div class="serv-card">
-                <div class="serv-icon">
-                    <svg width="24" height="24" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                </div>
-                <h3 style="font-family:var(--font-head); font-weight:700; font-size:1rem;">Endodoncia</h3>
-                <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted);">Tratamiento de conductos para salvar dientes con pulpa dañada. Procedimiento indoloro con anestesia local.</p>
-            </div>
-            <!-- 8 -->
-            <div class="serv-card">
-                <div class="serv-icon">
-                    <svg width="24" height="24" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                </div>
-                <h3 style="font-family:var(--font-head); font-weight:700; font-size:1rem;">Urgencias dentales</h3>
-                <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted);">Atendemos dolor de muelas, roturas y otras urgencias con la máxima rapidez posible.</p>
-            </div>
-            <!-- 9 — CTA card -->
-            <div class="serv-card flex flex-col justify-between" style="background:var(--brand); border-color:var(--brand);">
-                <div>
-                    <p class="kicker text-white opacity-70">¿Tienes dudas?</p>
-                    <h3 class="mt-3 font-bold text-lg text-white" style="font-family:var(--font-head);">Llámanos y te orientamos sin compromiso</h3>
-                </div>
-                <a href="tel:+34934313771"
-                   class="mt-6 inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-semibold transition-opacity hover:opacity-90"
-                   style="background:#fff; color:var(--brand); font-family:var(--font-head);">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.18-1.18a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92v2z"/></svg>
-                    934 31 37 71
-                </a>
-            </div>
+        <!-- Scroll hint -->
+        <div class="absolute bottom-8 right-10 hidden sm:flex flex-col items-center gap-2 opacity-40">
+            <span class="kicker text-white" style="font-size:.6rem; writing-mode:vertical-rl; letter-spacing:.2em;">scroll</span>
+            <div style="width:1px; height:40px; background:rgba(255,255,255,.5);"></div>
         </div>
     </div>
 </section>
 
-<!-- ───── LA CLÍNICA ───── -->
-<section id="clinica" class="py-20 sm:py-28" style="background:var(--surface);">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8">
-        <div class="grid lg:grid-cols-2 gap-14 items-center">
-            <div>
-                <p class="kicker" style="color:var(--brand);">Nuestras instalaciones</p>
-                <h2 class="mt-4 font-extrabold text-3xl sm:text-4xl tracking-tight" style="font-family:var(--font-head);">
-                    Una clínica moderna pensada para ti
+<!-- ── INTRO STRIP ── -->
+<section style="background:var(--ink);">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 py-12 grid sm:grid-cols-3 gap-8 sm:divide-x" style="--tw-divide-opacity:0.15; divide-color:rgba(255,255,255,.15);">
+        <div class="sm:pl-0 pl-0">
+            <p class="font-semibold text-3xl" style="font-family:var(--font-head); color:#fff; font-size:2.2rem;">+15 años</p>
+            <p class="mt-1 text-sm" style="color:rgba(255,255,255,.5); font-weight:300;">de experiencia en Barcelona</p>
+        </div>
+        <div class="sm:pl-10">
+            <p class="font-semibold text-3xl" style="font-family:var(--font-head); color:#fff; font-size:2.2rem;">4,9 ★</p>
+            <p class="mt-1 text-sm" style="color:rgba(255,255,255,.5); font-weight:300;">valoración media en Google</p>
+        </div>
+        <div class="sm:pl-10">
+            <p class="font-semibold text-3xl" style="font-family:var(--font-head); color:#fff; font-size:2.2rem;">Tecnología 3D</p>
+            <p class="mt-1 text-sm" style="color:rgba(255,255,255,.5); font-weight:300;">escáner panorámico de última generación</p>
+        </div>
+    </div>
+</section>
+
+<!-- ── TRATAMIENTOS ── -->
+<section id="tratamientos" class="py-24 sm:py-32" style="background:var(--bg);">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+            <!-- Encabezado izquierda -->
+            <div class="lg:sticky lg:top-28">
+                <span class="hairline mb-6"></span>
+                <p class="kicker" style="color:var(--brand);">Nuestros servicios</p>
+                <h2 class="mt-5 leading-[1.08] tracking-tight" style="font-size:clamp(2.4rem,4vw,3.5rem); font-weight:400;">
+                    Cuidado dental<br>integral para<br><em>toda la familia.</em>
                 </h2>
-                <p class="mt-5 text-base leading-relaxed" style="color:var(--muted);">
-                    Contamos con instalaciones completamente renovadas y equipamiento de última generación, incluyendo escáner panorámico 3D para diagnósticos precisos. Nuestros gabinetes están diseñados para que te sientas cómodo y seguro en todo momento.
+                <p class="mt-6 text-base leading-relaxed" style="color:var(--muted); max-width:400px; font-weight:300;">
+                    Desde una revisión rutinaria hasta tratamientos complejos. Nuestro equipo te acompaña en cada paso con transparencia y profesionalidad.
                 </p>
-                <ul class="mt-8 space-y-4">
-                    <li class="flex items-start gap-3">
-                        <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style="background:var(--brand-light);">
-                            <svg width="10" height="10" viewBox="0 0 10 10" fill="var(--brand)"><path d="M1.5 5L4 7.5 8.5 2.5"/></svg>
-                        </span>
-                        <span class="text-sm leading-relaxed"><strong style="font-family:var(--font-head);">Escáner panorámico 3D</strong> — tecnología CBCT para diagnósticos de máxima precisión</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style="background:var(--brand-light);">
-                            <svg width="10" height="10" viewBox="0 0 10 10" fill="var(--brand)"><path d="M1.5 5L4 7.5 8.5 2.5"/></svg>
-                        </span>
-                        <span class="text-sm leading-relaxed"><strong style="font-family:var(--font-head);">Gabinetes equipados</strong> — sillones de última generación para máximo confort</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style="background:var(--brand-light);">
-                            <svg width="10" height="10" viewBox="0 0 10 10" fill="var(--brand)"><path d="M1.5 5L4 7.5 8.5 2.5"/></svg>
-                        </span>
-                        <span class="text-sm leading-relaxed"><strong style="font-family:var(--font-head);">Sala de espera confortable</strong> — ambiente tranquilo y acogedor para toda la familia</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style="background:var(--brand-light);">
-                            <svg width="10" height="10" viewBox="0 0 10 10" fill="var(--brand)"><path d="M1.5 5L4 7.5 8.5 2.5"/></svg>
-                        </span>
-                        <span class="text-sm leading-relaxed"><strong style="font-family:var(--font-head);">Esterilización certificada</strong> — protocolos de higiene y seguridad de máximo nivel</span>
-                    </li>
-                </ul>
+                <a href="tel:+34934313771" class="btn-primary mt-10">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.18-1.18a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92v2z"/></svg>
+                    Consultar cita · 934 31 37 71
+                </a>
             </div>
-            <!-- Gallery -->
-            <div class="grid grid-cols-2 gap-3">
-                <div class="overflow-hidden rounded-2xl" style="grid-row: span 2;">
-                    <img src="inside.png" alt="Sala de espera" class="gallery-img" style="aspect-ratio:3/4;">
+
+            <!-- Lista de servicios derecha -->
+            <div>
+                <div class="serv-item">
+                    <span class="serv-num">01</span>
+                    <div>
+                        <h3 style="font-size:1.25rem; font-weight:500;">Revisión y diagnóstico</h3>
+                        <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted); font-weight:300;">Exploración completa con escáner panorámico 3D y radiografías digitales. El punto de partida para cuidar bien tu salud bucal.</p>
+                    </div>
                 </div>
-                <div class="overflow-hidden rounded-2xl">
-                    <img src="interior4.png" alt="Gabinete dental" class="gallery-img">
+                <div class="serv-item">
+                    <span class="serv-num">02</span>
+                    <div>
+                        <h3 style="font-size:1.25rem; font-weight:500;">Limpieza dental</h3>
+                        <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted); font-weight:300;">Eliminación de sarro y manchas con ultrasonidos. Profilaxis profesional para mantener encías y dientes en perfectas condiciones.</p>
+                    </div>
                 </div>
-                <div class="overflow-hidden rounded-2xl">
-                    <img src="interior5.png" alt="Recepción" class="gallery-img">
+                <div class="serv-item">
+                    <span class="serv-num">03</span>
+                    <div>
+                        <h3 style="font-size:1.25rem; font-weight:500;">Ortodoncia</h3>
+                        <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted); font-weight:300;">Brackets metálicos, estéticos y alineadores invisibles. Para niños, jóvenes y adultos que quieren una sonrisa bien alineada.</p>
+                    </div>
+                </div>
+                <div class="serv-item">
+                    <span class="serv-num">04</span>
+                    <div>
+                        <h3 style="font-size:1.25rem; font-weight:500;">Implantes dentales</h3>
+                        <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted); font-weight:300;">Dientes perdidos reemplazados con implantes de titanio. La solución más natural y duradera disponible hoy.</p>
+                    </div>
+                </div>
+                <div class="serv-item">
+                    <span class="serv-num">05</span>
+                    <div>
+                        <h3 style="font-size:1.25rem; font-weight:500;">Blanqueamiento dental</h3>
+                        <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted); font-weight:300;">Tratamiento profesional en clínica o con férulas personalizadas. Resultados visibles, seguros y duraderos.</p>
+                    </div>
+                </div>
+                <div class="serv-item">
+                    <span class="serv-num">06</span>
+                    <div>
+                        <h3 style="font-size:1.25rem; font-weight:500;">Endodoncia</h3>
+                        <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted); font-weight:300;">Tratamiento de conductos sin dolor. Conservamos tu diente cuando todavía se puede salvar.</p>
+                    </div>
+                </div>
+                <div class="serv-item">
+                    <span class="serv-num">07</span>
+                    <div>
+                        <h3 style="font-size:1.25rem; font-weight:500;">Odontopediatría</h3>
+                        <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted); font-weight:300;">Cuidado dental especializado para los más pequeños. Hacemos que ir al dentista sea una experiencia positiva desde el primer día.</p>
+                    </div>
+                </div>
+                <div class="serv-item" style="border-bottom:none;">
+                    <span class="serv-num">08</span>
+                    <div>
+                        <h3 style="font-size:1.25rem; font-weight:500;">Urgencias dentales</h3>
+                        <p class="mt-2 text-sm leading-relaxed" style="color:var(--muted); font-weight:300;">Dolor de muelas, roturas o cualquier urgencia. Llamamos y te atendemos lo antes posible.</p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <!-- Fila inferior de fotos -->
-        <div class="grid sm:grid-cols-3 gap-4 mt-6">
-            <div class="overflow-hidden rounded-2xl">
-                <img src="interior2.png" alt="Gabinete" class="gallery-img">
+<!-- ── LA CLÍNICA ── -->
+<section id="clinica" style="background:var(--surface);">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 py-24 sm:py-32">
+
+        <!-- Encabezado -->
+        <div class="max-w-2xl mb-16">
+            <span class="hairline mb-6"></span>
+            <p class="kicker" style="color:var(--brand);">Nuestras instalaciones</p>
+            <h2 class="mt-5 leading-[1.08] tracking-tight font-normal" style="font-size:clamp(2.2rem,4vw,3.2rem);">
+                Una clínica diseñada<br>para hacerte sentir<br><em>en buenas manos.</em>
+            </h2>
+        </div>
+
+        <!-- Grid de fotos asimétrico -->
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4" style="grid-template-rows: auto auto;">
+            <!-- Foto grande: sala de espera -->
+            <div class="col-span-2 lg:col-span-2 overflow-hidden rounded-2xl lift" style="height:480px;">
+                <img src="inside.png" alt="Sala de espera Clínica Dental Solé" class="photo-cover">
             </div>
-            <div class="overflow-hidden rounded-2xl">
-                <img src="interior3.png" alt="Escáner panorámico" class="gallery-img">
+            <!-- Foto recepción -->
+            <div class="overflow-hidden rounded-2xl lift" style="height:480px;">
+                <img src="interior5.png" alt="Recepción" class="photo-cover">
             </div>
-            <!-- Valoración destacada -->
-            <div class="rounded-2xl p-8 flex flex-col justify-between" style="background:var(--brand);">
+            <!-- Gabinete -->
+            <div class="overflow-hidden rounded-2xl lift" style="height:320px;">
+                <img src="interior4.png" alt="Gabinete dental" class="photo-cover">
+            </div>
+            <!-- Escáner -->
+            <div class="overflow-hidden rounded-2xl lift" style="height:320px;">
+                <img src="interior3.png" alt="Escáner panorámico 3D" class="photo-cover">
+            </div>
+            <!-- Tarjeta valoración -->
+            <div class="rounded-2xl flex flex-col justify-between p-8" style="background:var(--brand); height:320px;">
                 <div>
-                    <p class="kicker text-white opacity-70">Nuestros pacientes opinan</p>
-                    <div class="stars text-4xl mt-4 tracking-widest">★★★★★</div>
-                    <p class="mt-3 font-extrabold text-5xl text-white" style="font-family:var(--font-head);">4,9</p>
-                    <p class="mt-1 text-sm text-white opacity-70">valoración media en Google</p>
+                    <p class="kicker" style="color:rgba(255,255,255,.6);">Lo dicen nuestros pacientes</p>
+                    <p style="font-family:var(--font-head); font-size:4.5rem; font-weight:400; color:#fff; line-height:1; margin-top:.5rem;">4,9</p>
+                    <p style="color:rgba(255,255,255,.85); font-size:1.3rem; letter-spacing:4px; margin-top:.4rem;">★★★★★</p>
+                    <p class="mt-3 text-sm" style="color:rgba(255,255,255,.6); font-weight:300;">Valoración media en Google</p>
                 </div>
                 <a href="https://www.google.com/maps/place/Clinica+Dental+Sole" target="_blank" rel="noopener"
-                   class="mt-6 text-xs font-semibold text-white opacity-80 hover:opacity-100 underline"
-                   style="font-family:var(--font-head);">Ver reseñas →</a>
+                   class="kicker text-xs" style="color:rgba(255,255,255,.55); text-decoration:none; letter-spacing:.1em;">
+                    Ver reseñas →
+                </a>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- ───── BANDA CTA ───── -->
-<section class="py-16" style="background:var(--brand-dark);">
-    <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
-        <p class="kicker text-white opacity-60">Sin listas de espera</p>
-        <h2 class="mt-4 font-extrabold text-3xl sm:text-4xl text-white tracking-tight" style="font-family:var(--font-head);">
-            ¿Llevas tiempo sin ir al dentista?<br>Pide tu cita hoy.
-        </h2>
-        <p class="mt-5 text-base text-white opacity-70 max-w-xl mx-auto">
-            Llámanos y te damos cita lo antes posible. Primera visita de revisión con diagnóstico completo.
-        </p>
-        <a href="tel:+34934313771"
-           class="mt-8 inline-flex items-center gap-3 px-10 py-4 rounded-full text-sm font-semibold transition-all hover:scale-105"
-           style="background:#fff; color:var(--brand-dark); font-family:var(--font-head);">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.18-1.18a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92v2z"/></svg>
-            Llamar ahora · 934 31 37 71
-        </a>
-    </div>
-</section>
-
-<!-- ───── HORARIOS + CONTACTO ───── -->
-<section id="horarios" class="py-20 sm:py-28" style="background:var(--bg);">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8">
-        <div class="grid lg:grid-cols-2 gap-14">
-
-            <!-- Horarios -->
+        <!-- Texto descriptivo -->
+        <div class="grid lg:grid-cols-3 gap-10 mt-16 pt-12" style="border-top:1px solid var(--line);">
             <div>
-                <p class="kicker" style="color:var(--brand);">Horario de atención</p>
-                <h2 class="mt-4 font-extrabold text-3xl sm:text-4xl tracking-tight" style="font-family:var(--font-head);">Estamos aquí<br>cuando nos necesitas</h2>
-                <div class="mt-10 rounded-2xl overflow-hidden" style="border:1px solid var(--line);">
-                    <div class="px-6 py-4" style="background:var(--brand); ">
-                        <p class="font-bold text-white text-sm" style="font-family:var(--font-head);">Horario semanal</p>
-                    </div>
-                    <div class="px-6 py-2">
-                        <div class="sched-row">
-                            <span class="sched-day">Lunes</span>
-                            <span class="sched-hrs">9:00–14:00 &nbsp;|&nbsp; 16:00–19:00</span>
-                        </div>
-                        <div class="sched-row">
-                            <span class="sched-day">Martes</span>
-                            <span class="sched-hrs">9:00–14:00 &nbsp;|&nbsp; 16:00–19:00</span>
-                        </div>
-                        <div class="sched-row">
-                            <span class="sched-day">Miércoles</span>
-                            <span class="sched-hrs">9:00–14:00 &nbsp;|&nbsp; 16:00–19:00</span>
-                        </div>
-                        <div class="sched-row">
-                            <span class="sched-day">Jueves</span>
-                            <span class="sched-hrs">9:00–14:00 &nbsp;|&nbsp; 16:00–19:00</span>
-                        </div>
-                        <div class="sched-row">
-                            <span class="sched-day">Viernes</span>
-                            <span class="sched-hrs">9:00–14:00 &nbsp;|&nbsp; 16:00–19:00</span>
-                        </div>
-                        <div class="sched-row">
-                            <span class="sched-day" style="color:var(--muted);">Sábado</span>
-                            <span class="badge-closed">Cerrado</span>
-                        </div>
-                        <div class="sched-row">
-                            <span class="sched-day" style="color:var(--muted);">Domingo</span>
-                            <span class="badge-closed">Cerrado</span>
-                        </div>
-                    </div>
-                </div>
+                <h4 style="font-family:var(--font-head); font-size:1.3rem; font-weight:500;">Escáner 3D</h4>
+                <p class="mt-3 text-sm leading-relaxed" style="color:var(--muted); font-weight:300;">Contamos con tecnología CBCT panorámica para diagnósticos de máxima precisión antes de cualquier tratamiento.</p>
             </div>
-
-            <!-- Contacto -->
-            <div id="contacto">
-                <p class="kicker" style="color:var(--brand);">Cómo llegar</p>
-                <h2 class="mt-4 font-extrabold text-3xl sm:text-4xl tracking-tight" style="font-family:var(--font-head);">Nos encontrarás<br>en el corazón de Sants</h2>
-
-                <div class="mt-8 space-y-5">
-                    <div class="flex items-start gap-4">
-                        <div class="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--brand-light);">
-                            <svg width="18" height="18" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-sm" style="font-family:var(--font-head);">Dirección</p>
-                            <p class="text-sm mt-0.5" style="color:var(--muted);">Carrer del Callao, 5<br>Sants-Montjuïc, 08014 Barcelona</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center" style="background:var(--brand-light);">
-                            <svg width="18" height="18" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.18-1.18a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92v2z"/></svg>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-sm" style="font-family:var(--font-head);">Teléfono</p>
-                            <a href="tel:+34934313771" class="text-sm mt-0.5 hover:underline" style="color:var(--brand);">934 31 37 71</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mapa -->
-                <div class="mt-8 rounded-2xl overflow-hidden" style="border:1px solid var(--line); height:280px;">
-                    <iframe
-                        src="https://maps.google.com/maps?q=Carrer+del+Callao+5,+Sants-Montjuic,+08014+Barcelona&output=embed&z=16"
-                        width="100%" height="100%" style="border:0; display:block;"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                        title="Mapa Clínica Dental Solé">
-                    </iframe>
-                </div>
+            <div>
+                <h4 style="font-family:var(--font-head); font-size:1.3rem; font-weight:500;">Instalaciones renovadas</h4>
+                <p class="mt-3 text-sm leading-relaxed" style="color:var(--muted); font-weight:300;">Gabinetes modernos, sala de espera acogedora y recepción luminosa. Todo pensado para tu comodidad.</p>
+            </div>
+            <div>
+                <h4 style="font-family:var(--font-head); font-size:1.3rem; font-weight:500;">Higiene y esterilización</h4>
+                <p class="mt-3 text-sm leading-relaxed" style="color:var(--muted); font-weight:300;">Protocolos de esterilización certificados. Tu seguridad y la de tu familia es nuestra prioridad absoluta.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ───── FOOTER ───── -->
-<footer class="py-10" style="background:var(--ink);">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-2">
-                <svg width="24" height="24" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="rgba(255,255,255,.1)"/><path d="M9 10c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.5-.67 2.83-1.71 3.76L19 23h-2l-1.5-5h-3L11 23H9l1.71-9.24A4.99 4.99 0 0 1 9 10z" fill="#60B8EE"/></svg>
-                <span style="font-family:var(--font-head); font-weight:800; color:#fff; font-size:.95rem;">Dental <span style="color:#60B8EE;">Solé</span></span>
-            </div>
-            <div class="flex items-center gap-6 text-xs" style="color:rgba(255,255,255,.5);">
-                <a href="#tratamientos" class="hover:text-white transition-colors" style="color:inherit;">Tratamientos</a>
-                <a href="#clinica" class="hover:text-white transition-colors" style="color:inherit;">La Clínica</a>
-                <a href="#horarios" class="hover:text-white transition-colors" style="color:inherit;">Horarios</a>
-                <a href="#contacto" class="hover:text-white transition-colors" style="color:inherit;">Contacto</a>
-            </div>
-            <p class="text-xs" style="color:rgba(255,255,255,.4);">© <span id="year"></span> Clínica Dental Solé · Barcelona</p>
+<!-- ── BANDA CTA ── -->
+<section style="background:var(--ink);">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 py-20 sm:py-24 grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+            <p class="kicker" style="color:rgba(255,255,255,.4);">Sin esperas innecesarias</p>
+            <h2 class="mt-5 font-normal leading-tight text-white" style="font-size:clamp(2rem,4vw,3rem); font-family:var(--font-head);">
+                ¿Llevas tiempo sin ir al dentista?<br><em>Pide cita hoy mismo.</em>
+            </h2>
         </div>
-        <p class="mt-6 text-center text-xs" style="color:rgba(255,255,255,.25);">
-            Carrer del Callao, 5 · Sants-Montjuïc · 08014 Barcelona · <a href="tel:+34934313771" style="color:inherit; text-decoration:none;">934 31 37 71</a>
+        <div class="lg:text-right">
+            <a href="tel:+34934313771"
+               style="font-family:var(--font-head); font-size:clamp(2rem,4vw,3.2rem); font-weight:400; color:#60B8EE; text-decoration:none; display:block; transition:color .2s;"
+               class="hover:text-white">
+                934 31 37 71
+            </a>
+            <p class="mt-2 text-sm" style="color:rgba(255,255,255,.4); font-weight:300;">Lunes a viernes · 9:00–14:00 y 16:00–19:00</p>
+            <a href="tel:+34934313771" class="btn-primary mt-6 inline-flex">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.18-1.18a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92v2z"/></svg>
+                Llamar ahora
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ── HORARIOS + CONTACTO ── -->
+<section id="horarios" class="py-24 sm:py-32" style="background:var(--bg);">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 grid lg:grid-cols-2 gap-20">
+
+        <!-- Horarios -->
+        <div>
+            <span class="hairline mb-6"></span>
+            <p class="kicker" style="color:var(--brand);">Horario</p>
+            <h2 class="mt-5 font-normal leading-tight" style="font-size:clamp(2rem,3.5vw,2.8rem); font-family:var(--font-head);">
+                Estamos aquí<br>cuando nos <em>necesitas.</em>
+            </h2>
+            <div class="mt-10 rounded-2xl overflow-hidden" style="border:1px solid var(--line);">
+                <div class="px-6 py-4" style="background:var(--brand);">
+                    <p class="kicker text-white" style="font-size:.65rem;">Horario semanal</p>
+                </div>
+                <div>
+                    <div class="sched-row">
+                        <span style="font-family:var(--font-head); font-size:1.1rem; font-weight:400;">Lunes</span>
+                        <span class="text-sm" style="color:var(--muted);">9:00–14:00 &nbsp;·&nbsp; 16:00–19:00</span>
+                    </div>
+                    <div class="sched-row">
+                        <span style="font-family:var(--font-head); font-size:1.1rem; font-weight:400;">Martes</span>
+                        <span class="text-sm" style="color:var(--muted);">9:00–14:00 &nbsp;·&nbsp; 16:00–19:00</span>
+                    </div>
+                    <div class="sched-row">
+                        <span style="font-family:var(--font-head); font-size:1.1rem; font-weight:400;">Miércoles</span>
+                        <span class="text-sm" style="color:var(--muted);">9:00–14:00 &nbsp;·&nbsp; 16:00–19:00</span>
+                    </div>
+                    <div class="sched-row">
+                        <span style="font-family:var(--font-head); font-size:1.1rem; font-weight:400;">Jueves</span>
+                        <span class="text-sm" style="color:var(--muted);">9:00–14:00 &nbsp;·&nbsp; 16:00–19:00</span>
+                    </div>
+                    <div class="sched-row">
+                        <span style="font-family:var(--font-head); font-size:1.1rem; font-weight:400;">Viernes</span>
+                        <span class="text-sm" style="color:var(--muted);">9:00–14:00 &nbsp;·&nbsp; 16:00–19:00</span>
+                    </div>
+                    <div class="sched-row" style="background:#FAFAFA;">
+                        <span style="font-family:var(--font-head); font-size:1.1rem; color:#B0BEC5;">Sábado</span>
+                        <span class="kicker" style="color:#CFD8DC; font-size:.65rem;">Cerrado</span>
+                    </div>
+                    <div class="sched-row" style="background:#FAFAFA; border-bottom:none;">
+                        <span style="font-family:var(--font-head); font-size:1.1rem; color:#B0BEC5;">Domingo</span>
+                        <span class="kicker" style="color:#CFD8DC; font-size:.65rem;">Cerrado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacto -->
+        <div id="contacto">
+            <span class="hairline mb-6"></span>
+            <p class="kicker" style="color:var(--brand);">Cómo llegar</p>
+            <h2 class="mt-5 font-normal leading-tight" style="font-size:clamp(2rem,3.5vw,2.8rem); font-family:var(--font-head);">
+                En el corazón<br>de <em>Sants, Barcelona.</em>
+            </h2>
+            <div class="mt-10 space-y-6">
+                <div class="flex items-start gap-4">
+                    <div style="width:40px; height:40px; background:var(--brand-light); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                        <svg width="18" height="18" fill="none" stroke="var(--brand)" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <p class="kicker mb-1" style="color:var(--brand); font-size:.65rem;">Dirección</p>
+                        <p class="text-sm leading-relaxed" style="font-weight:300;">Carrer del Callao, 5<br>Sants-Montjuïc · 08014 Barcelona</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div style="width:40px; height:40px; background:var(--brand-light); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                        <svg width="18" height="18" fill="none" stroke="var(--brand)" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.97.72 2.9a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.18-1.18a2 2 0 012.11-.45c.93.35 1.9.59 2.9.72A2 2 0 0122 14.92v2z"/></svg>
+                    </div>
+                    <div>
+                        <p class="kicker mb-1" style="color:var(--brand); font-size:.65rem;">Teléfono</p>
+                        <a href="tel:+34934313771" style="font-family:var(--font-head); font-size:1.5rem; font-weight:400; color:var(--ink); text-decoration:none; transition:color .2s;" class="hover:text-[var(--brand)]">
+                            934 31 37 71
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Mapa -->
+            <div class="mt-8 rounded-2xl overflow-hidden" style="height:280px; border:1px solid var(--line);">
+                <iframe
+                    src="https://maps.google.com/maps?q=Carrer+del+Callao+5,+Sants-Montjuic,+08014+Barcelona&output=embed&z=16"
+                    width="100%" height="100%" style="border:0; display:block;"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    title="Clínica Dental Solé mapa">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer style="background:var(--ink); color:rgba(255,255,255,.45);">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 py-10">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <a href="#" style="font-family:var(--font-head); font-size:1.2rem; font-weight:400; color:rgba(255,255,255,.8); text-decoration:none;">
+                Dental <em>Solé</em>
+            </a>
+            <div class="flex flex-wrap gap-6 text-xs" style="font-size:.75rem;">
+                <a href="#tratamientos" style="color:inherit; text-decoration:none; transition:color .2s;" class="hover:text-white">Tratamientos</a>
+                <a href="#clinica" style="color:inherit; text-decoration:none; transition:color .2s;" class="hover:text-white">La Clínica</a>
+                <a href="#horarios" style="color:inherit; text-decoration:none; transition:color .2s;" class="hover:text-white">Horarios</a>
+                <a href="#contacto" style="color:inherit; text-decoration:none; transition:color .2s;" class="hover:text-white">Contacto</a>
+            </div>
+            <p style="font-size:.72rem;">© <span id="year"></span> Clínica Dental Solé · Barcelona</p>
+        </div>
+        <p class="mt-6 text-xs" style="color:rgba(255,255,255,.2);">
+            Carrer del Callao, 5 · Sants-Montjuïc · 08014 Barcelona ·
+            <a href="tel:+34934313771" style="color:inherit; text-decoration:none;">934 31 37 71</a>
         </p>
     </div>
 </footer>
 
 <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('year').textContent = new Date().getFullYear();
 
-    const btn = document.getElementById('menu-btn');
-    const menu = document.getElementById('mobile-menu');
-    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+// NAV scroll behavior
+const nav = document.getElementById('nav');
+const logo = document.getElementById('nav-logo');
+const cta = document.getElementById('nav-cta');
+window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 60;
+    nav.classList.toggle('scrolled', scrolled);
+    logo.style.color = scrolled ? 'var(--ink)' : '#fff';
+    cta.style.borderColor = scrolled ? 'var(--brand)' : 'rgba(255,255,255,.5)';
+    cta.style.color = scrolled ? 'var(--brand)' : '#fff';
+});
+
+// Mobile menu
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const closeBtn = document.getElementById('close-menu');
+menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
 </script>
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
